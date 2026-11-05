@@ -1,0 +1,45 @@
+{
+  "name": "smart-faculty-profile-agent",
+  "version": "1.0.0",
+  "description": "Automated faculty profile builder for NAAC/NBA accreditation using IBM Granite on watsonx.ai.",
+  "author": "AICTE Project",
+  "license": "MIT",
+  "runtime": "python3.10+",
+  "entry_point": "backend/main.py",
+  "start_command": "uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload",
+  "framework": "FastAPI",
+  "ai_models": {
+    "llm": {
+      "provider": "IBM watsonx.ai",
+      "model_id": "ibm/granite-3-8b-instruct",
+      "use": "Information extraction, profile generation, bio writing, correction merging"
+    },
+    "embedding": {
+      "provider": "IBM watsonx.ai",
+      "model_id": "ibm/granite-embedding-278m-multilingual",
+      "use": "RAG chunk embedding for retrieval-augmented context"
+    }
+  },
+  "vector_store": {
+    "type": "FAISS",
+    "storage": "local disk (uploads/vector_store/)"
+  },
+  "features": [
+    "Upload PDFs, DOCX, Excel, CSV, and images",
+    "Text extraction with OCR fallback for scanned documents",
+    "RAG pipeline: chunk → embed → store → retrieve",
+    "Granite-powered structured extraction of 7 academic categories",
+    "Standardized profile and professional bio generation",
+    "NAAC/NBA-ready PDF and Word export",
+    "Update mode: merge new documents with existing profile",
+    "Edit page: review and correct extracted data",
+    "Token usage dashboard for every Granite call"
+  ],
+  "environment_variables": {
+    "WATSONX_API_KEY": "IBM Cloud API key",
+    "WATSONX_PROJECT_ID": "watsonx.ai project ID",
+    "WATSONX_URL": "watsonx.ai service URL (default: https://us-south.ml.cloud.ibm.com)"
+  },
+  "port": 8000,
+  "health_check": "GET /docs"
+}

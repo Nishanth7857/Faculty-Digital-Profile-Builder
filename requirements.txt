@@ -1,0 +1,28 @@
+# ── Web framework ──────────────────────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9        # file uploads
+
+# ── IBM watsonx.ai SDK ─────────────────────────────────────────────────────────
+ibm-watsonx-ai==1.3.18         # Granite LLM + embedding models — 1.1.2 does not exist on PyPI; 1.3.18 is earliest available 1.3.x
+
+# ── Document parsing ───────────────────────────────────────────────────────────
+pypdf2==3.0.1                  # PDF text extraction
+python-docx==1.1.0             # DOCX parsing
+openpyxl==3.1.2                # Excel (.xlsx) parsing
+Pillow==11.1.0                 # image support (certificates) — 11.x required for Python 3.13 wheels
+pytesseract==0.3.10            # OCR for image-based PDFs / certificates
+
+# ── RAG / vector store ─────────────────────────────────────────────────────────
+faiss-cpu==1.9.0.post1         # local vector database — 1.9+ required for Python 3.13 wheels
+numpy==2.2.0                   # required by faiss — 2.x required for Python 3.13 wheels
+
+# ── Report export ──────────────────────────────────────────────────────────────
+reportlab==4.2.0               # PDF generation
+
+# ── Utilities ──────────────────────────────────────────────────────────────────
+python-dotenv==1.0.1           # load .env file
+aiofiles==23.2.1               # async file I/O
+jinja2==3.1.4                  # HTML templating
+pydantic==2.10.6               # data models / validation — 2.10+ has Python 3.13 wheels for pydantic-core
+pandas==2.2.3                  # CSV + Excel reading — 2.2.x has Python 3.13 wheels; works fine with ibm-watsonx-ai 1.1.2 at runtime

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Faculty Profile Agent</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="6" fill="#1a3c5e"/>
+        <path d="M8 10h16M8 16h10M8 22h13" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="24" cy="22" r="4" fill="#3b82d4"/>
+        <path d="M22.5 22l1 1 2-2" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Smart Faculty Profile Agent</span>
+    </div>
+    <span class="brand-powered">Powered by IBM Granite · watsonx.ai</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ MAIN LAYOUT ══════════════════════════════ -->
+<div class="app-layout">
+
+  <!-- ── Left Sidebar: steps + stats ── -->
+  <aside class="sidebar">
+    <nav class="step-nav">
+      <div class="step-nav-title">Workflow</div>
+      <button class="step-btn active" onclick="showTab('tab-upload')">
+        <span class="step-num">1</span> Upload Documents
+      </button>
+      <button class="step-btn" onclick="showTab('tab-extract')">
+        <span class="step-num">2</span> Extract Profile
+      </button>
+      <button class="step-btn" onclick="showTab('tab-edit')">
+        <span class="step-num">3</span> Review &amp; Edit
+      </button>
+      <button class="step-btn" onclick="showTab('tab-generate')">
+        <span class="step-num">4</span> Generate Text
+      </button>
+      <button class="step-btn" onclick="showTab('tab-export')">
+        <span class="step-num">5</span> Export Report
+      </button>
+    </nav>
+
+    <!-- Token usage dashboard -->
+    <div class="stats-card">
+      <div class="stats-title">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#3b82d4" stroke-width="2"/><path d="M10 6v4l2.5 2.5" stroke="#3b82d4" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Granite Token Usage
+      </div>
+      <div class="stat-row"><span>Files Uploaded</span><span id="stat-files">0</span></div>
+      <div class="stat-row"><span>Extract Tokens (in)</span><span id="stat-ext-in">0</span></div>
+      <div class="stat-row"><span>Extract Tokens (out)</span><span id="stat-ext-out">0</span></div>
+      <div class="stat-row"><span>Generate Tokens (in)</span><span id="stat-gen-in">0</span></div>
+      <div class="stat-row"><span>Generate Tokens (out)</span><span id="stat-gen-out">0</span></div>
+      <div class="stat-row"><span>Refine Tokens</span><span id="stat-ref">0</span></div>
+      <div class="stat-row"><span>Embed Tokens (est.)</span><span id="stat-emb">0</span></div>
+      <div class="stat-row total-row"><span>Total Tokens</span><span id="stat-total">0</span></div>
+      <button class="btn btn-sm btn-outline" onclick="loadStats()">↻ Refresh</button>
+    </div>
+
+    <!-- Reset button -->
+    <button class="btn btn-danger btn-sm" onclick="resetAll()" style="width:100%;margin-top:8px;">
+      ✕ Reset All Data
+    </button>
+  </aside>
+
+  <!-- ── Main content area ── -->
+  <main class="content-area">
+
+    <!-- ──────────────────── TAB 1: Upload ──────────────────── -->
+    <section id="tab-upload" class="tab active">
+      <h2 class="section-title">Step 1 — Upload Faculty Documents</h2>
+      <p class="section-desc">
+        Upload CVs (PDF/DOCX), certificates (PDF/images), Excel or CSV files.
+        For <strong>Update mode</strong>, simply upload new documents and they will be merged
+        with the existing profile automatically.
+      </p>
+
+      <div class="drop-zone" id="drop-zone">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#f0f5ff"/><path d="M20 12v16M12 20l8-8 8 8" stroke="#3b82d4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Drag &amp; drop files here, or <label class="upload-link" for="file-input">browse</label></p>
+        <p class="muted-text">Supported: PDF, DOCX, XLSX, CSV, PNG, JPG</p>
+        <input type="file" id="file-input" multiple accept=".pdf,.docx,.xlsx,.csv,.png,.jpg,.jpeg,.tiff" hidden />
+      </div>
+
+      <div id="file-list" class="file-list"></div>
+
+      <button class="btn btn-primary" id="upload-btn" onclick="uploadFiles()" disabled>
+        Upload &amp; Ingest
+      </button>
+
+      <div id="upload-result" class="result-box hidden"></div>
+    </section>
+
+    <!-- ──────────────────── TAB 2: Extract ──────────────────── -->
+    <section id="tab-extract" class="tab">
+      <h2 class="section-title">Step 2 — Extract Profile Data with Granite</h2>
+      <p class="section-desc">
+        IBM Granite (<code>ibm/granite-3-8b-instruct</code>) reads the ingested documents via
+        RAG and extracts structured academic data. This may take 15–30 seconds.
+      </p>
+
+      <button class="btn btn-primary" onclick="extractProfile()">
+        ▶ Run Granite Extraction
+      </button>
+
+      <div id="extract-spinner" class="spinner hidden"></div>
+      <div id="extract-token-badge" class="token-badge hidden"></div>
+      <pre id="extract-output" class="json-output hidden"></pre>
+    </section>
+
+    <!-- ──────────────────── TAB 3: Edit ──────────────────── -->
+    <section id="tab-edit" class="tab">
+      <h2 class="section-title">Step 3 — Review &amp; Edit Extracted Data</h2>
+      <p class="section-desc">
+        Review the extracted data below. Click any field to edit it directly.
+        Click <strong>Save Corrections</strong> to store your changes.
+      </p>
+
+      <div id="edit-form" class="edit-form">
+        <p class="muted-text">Run extraction first (Step 2) to see editable fields here.</p>
+      </div>
+
+      <div class="btn-group" style="margin-top:16px;">
+        <button class="btn btn-primary" onclick="saveEdits()">💾 Save Corrections</button>
+        <button class="btn btn-outline" onclick="mergeProfile()">✦ Granite Merge &amp; Deduplicate</button>
+      </div>
+
+      <div id="edit-result" class="result-box hidden" style="margin-top:12px;"></div>
+    </section>
+
+    <!-- ──────────────────── TAB 4: Generate ──────────────────── -->
+    <section id="tab-generate" class="tab">
+      <h2 class="section-title">Step 4 — Generate Profile Text &amp; Bio</h2>
+      <p class="section-desc">
+        Granite writes a clean, NAAC/NBA-ready narrative profile and a short professional bio
+        from the extracted structured data.
+      </p>
+
+      <button class="btn btn-primary" onclick="generateProfile()">
+        ✦ Generate with Granite
+      </button>
+
+      <div id="generate-spinner" class="spinner hidden"></div>
+      <div id="generate-token-badge" class="token-badge hidden"></div>
+
+      <div id="generate-output" class="hidden">
+        <h3 class="sub-heading">Professional Bio</h3>
+        <div id="bio-text" class="profile-text-box"></div>
+        <h3 class="sub-heading">Full Academic Profile</h3>
+        <div id="full-profile-text" class="profile-text-box"></div>
+      </div>
+    </section>
+
+    <!-- ──────────────────── TAB 5: Export ──────────────────── -->
+    <section id="tab-export" class="tab">
+      <h2 class="section-title">Step 5 — Export NAAC/NBA Report</h2>
+      <p class="section-desc">
+        Download the complete faculty profile as a formatted PDF or Word document,
+        ready for accreditation submissions.
+      </p>
+
+      <div class="export-cards">
+        <div class="export-card">
+          <div class="export-icon">📄</div>
+          <div class="export-label">PDF Report</div>
+          <div class="export-desc">NAAC/NBA formatted, with tables and sections</div>
+          <a class="btn btn-primary" href="/api/export/pdf" target="_blank">
+            ⬇ Download PDF
+          </a>
+        </div>
+        <div class="export-card">
+          <div class="export-icon">📝</div>
+          <div class="export-label">Word Report</div>
+          <div class="export-desc">Editable .docx with proper headings and tables</div>
+          <a class="btn btn-outline" href="/api/export/docx" target="_blank">
+            ⬇ Download DOCX
+          </a>
+        </div>
+      </div>
+
+      <div class="export-note">
+        <strong>Note:</strong> Run Steps 1–4 before exporting.
+        The export uses the latest saved profile and generated text.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ═══════════════════════════════ TOAST ════════════════════════════════════ -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- ═══════════════════════════════ SCRIPTS ══════════════════════════════════ -->
+<script src="/static/app.js"></script>
+</body>
+</html>

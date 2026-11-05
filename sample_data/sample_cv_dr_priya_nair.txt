@@ -1,0 +1,155 @@
+CURRICULUM VITAE
+
+================================================================================
+PERSONAL DETAILS
+================================================================================
+
+Name              : Dr. Priya Ramesh Nair
+Designation       : Associate Professor
+Department        : Computer Science and Engineering
+Institution       : Vivekananda Institute of Technology, Pune
+Email             : priya.nair@vitpune.ac.in
+Phone             : +91-98765-43210
+Date of Birth     : 14-March-1982
+Gender            : Female
+Nationality       : Indian
+
+
+================================================================================
+ACADEMIC QUALIFICATIONS
+================================================================================
+
+Degree       | Subject                    | Institution                         | Year | Grade / Division
+-------------|----------------------------|-------------------------------------|------|-----------------
+Ph.D.        | Computer Science           | University of Pune                  | 2014 | Outstanding
+M.E.         | Computer Engineering       | Savitribai Phule Pune University     | 2007 | First Class with Distinction
+B.E.         | Computer Science & Engg.   | Marathwada University                | 2004 | First Class
+
+
+================================================================================
+PUBLICATIONS
+================================================================================
+
+International Journals:
+1. Nair, P.R., Kulkarni, S. (2023). "Deep Learning-based Diabetic Retinopathy Detection Using Ensemble CNNs." Journal of Biomedical Informatics, Vol. 140, pp. 104-118. DOI: 10.1016/j.jbi.2023.104118
+2. Nair, P.R., Deshmukh, A. (2022). "Federated Learning for Privacy-Preserving Healthcare Data Analysis." IEEE Transactions on Neural Networks and Learning Systems, Vol. 33, No. 8, pp. 3812-3825. DOI: 10.1109/TNNLS.2022.3150012
+3. Nair, P.R., Patil, R., Joshi, M. (2021). "An Efficient Graph Neural Network Architecture for Social Network Spam Detection." Expert Systems with Applications, Vol. 185, 115632. DOI: 10.1016/j.eswa.2021.115632
+
+International Conferences:
+4. Nair, P.R., Kulkarni, S., Sharma, V. (2023). "RAG-enhanced Code Generation Using Instruction-Tuned LLMs." Proceedings of AAAI 2023, Washington DC, pp. 1234-1242.
+5. Nair, P.R., Deshmukh, A. (2020). "Transfer Learning Approach for Low-Resource NLP in Marathi Language." Proceedings of ACL 2020, Online, pp. 567-576.
+
+
+================================================================================
+FACULTY DEVELOPMENT PROGRAMMES (FDPs) AND WORKSHOPS ATTENDED
+================================================================================
+
+1. Title     : Advanced Deep Learning and its Applications
+   Organizer : IIT Bombay (via NPTEL)
+   Duration  : 4 weeks (June 2023)
+   Type      : FDP
+
+2. Title     : IBM watsonx.ai Essentials for Educators
+   Organizer : IBM India Pvt. Ltd.
+   Duration  : 3 days (November 2022)
+   Type      : Workshop
+
+3. Title     : Research Methodology and Academic Writing
+   Organizer : Savitribai Phule Pune University
+   Duration  : 1 week (July 2022)
+   Type      : FDP
+
+4. Title     : Cloud Computing and DevOps Practices
+   Organizer : AWS India & AICTE
+   Duration  : 5 days (March 2021)
+   Type      : Workshop
+
+5. Title     : Natural Language Processing Fundamentals
+   Organizer : NIT Warangal
+   Duration  : 2 weeks (December 2020)
+   Type      : FDP
+
+
+================================================================================
+PATENTS
+================================================================================
+
+1. Title          : System and Method for Real-Time Sign Language Recognition Using Vision Transformers
+   Patent Number  : IN202321045678A
+   Status         : Published
+   Year           : 2023
+   Co-Inventors   : S. Kulkarni, A. Deshmukh
+
+2. Title          : IoT-Based Smart Irrigation System with ML-Driven Crop Prediction
+   Patent Number  : IN202221034512A
+   Status         : Granted
+   Year           : 2022
+   Co-Inventors   : R. Patil, M. Joshi
+
+
+================================================================================
+RESEARCH GRANTS AND FUNDED PROJECTS
+================================================================================
+
+1. Title          : Privacy-Preserving AI for Rural Healthcare in Maharashtra
+   Funding Agency : Department of Science and Technology (DST), Govt. of India
+   Amount         : ₹28,50,000
+   Duration       : 2022–2025 (3 years)
+   Role           : Principal Investigator (PI)
+
+2. Title          : Low-Resource Multilingual NLP for Indian Languages
+   Funding Agency : Ministry of Electronics & IT (MeitY), Govt. of India
+   Amount         : ₹15,00,000
+   Duration       : 2020–2022 (2 years)
+   Role           : Co-Principal Investigator (Co-PI)
+
+3. Title          : Smart Campus Automation Using Edge AI
+   Funding Agency : Vivekananda Institute of Technology Internal Research Fund
+   Amount         : ₹3,50,000
+   Duration       : 2021–2022 (1 year)
+   Role           : Principal Investigator (PI)
+
+
+================================================================================
+ACHIEVEMENTS AND AWARDS
+================================================================================
+
+1. Best Research Paper Award — IEEE ICCCNT 2023, NIT Kurukshetra (2023)
+   Given by: IEEE India Council
+
+2. Young Faculty Research Award — Savitribai Phule Pune University (2022)
+   Given by: University Academic Council
+
+3. IBM Academic Award for AI Innovation in Education (2022)
+   Given by: IBM India University Program
+
+4. Best Teacher Award — Vivekananda Institute of Technology (2019)
+   Given by: Students' Academic Association, VIT Pune
+
+5. Gold Medal — M.E. Computer Engineering (2007)
+   Given by: Savitribai Phule Pune University
+
+
+================================================================================
+TEACHING EXPERIENCE
+================================================================================
+
+• Associate Professor, Dept. of CSE, VIT Pune       (2016 – Present)
+• Assistant Professor, Dept. of IT, Symbiosis Inst.  (2007 – 2016)
+
+Subjects Taught:
+  - Machine Learning, Deep Learning, NLP
+  - Data Structures and Algorithms
+  - Database Management Systems
+  - Cloud Computing
+
+================================================================================
+DECLARATION
+================================================================================
+
+I hereby declare that the above information is true and correct to the best of my knowledge.
+
+Place: Pune
+Date:  October 2024
+
+Signature: Dr. Priya Ramesh Nair
